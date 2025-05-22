@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}출결 관리{% endblock %}
+
+{% block content %}
+<h2>출결 등록</h2>
+<form method="post">
+    <label>날짜: <input type="date" name="date" value="{{ today }}"></label>
+    <table border="1">
+        <tr>
+            <th>이름</th>
+            <th>출결</th>
+        </tr>
+        {% for member in members %}
+        <tr>
+            <td>{{ member.name }}</td>
+            <td>
+                <select name="{{ member.name }}">
+                    <option value="출석">출석</option>
+                    <option value="사유결석">사유결석</option>
+                    <option value="무단결석">무단결석</option>
+                </select>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" value="저장">
+</form>
+<p><a href="{{ url_for('dashboard') }}">대시보드로 돌아가기</a></p>
+{% endblock %}

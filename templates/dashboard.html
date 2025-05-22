@@ -8,5 +8,7 @@
 <!-- 여기에 멤버 등록, 출결 관리, 공지 등 기능이 붙을 예정 -->
 <ul>
     <li><a href="{{ url_for('manage_members') }}">멤버 관리</a></li>
+    <li><a href="{{ url_for('attendance') }}">출결 관리</a></li>
+    <li><a href="{{ url_for('attendance_status') }}">출결 현황 보기</a></li>
 </ul>
 {% endblock %}

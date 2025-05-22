@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+from datetime import datetime
 import json
 import os
 
@@ -63,6 +64,51 @@ def manage_members():
         return redirect(url_for('manage_members'))
 
     return render_template('members.html', members=data['members'])
+
+@app.route('/attendance', methods=['GET', 'POST'])
+def attendance():
+    if 'user' not in session:
+        return redirect(url_for('login'))
+
+    data = load_data()
+    members = sorted(data['members'], key=lambda m: (m['role'] != '주체', m['name']))
+    today = datetime.today().strftime('%Y-%m-%d')
+
+    if request.method == 'POST':
+        date = request.form['date']
+        for member in members:
+            status = request.form.get(member['name'])
+            if date not in data['attendance']:
+                data['attendance'][date] = {}
+            data['attendance'][date][member['name']] = status
+        save_data(data)
+        return redirect(url_for('attendance'))
+
+    return render_template('attendance.html', members=members, today=today)
+
+
+@app.route('/attendance/status')
+def attendance_status():
+    if 'user' not in session:
+        return redirect(url_for('login'))
+
+    data = load_data()
+    members = sorted(data['members'], key=lambda m: (m['role'] != '주체', m['name']))
+    attendance_data = data.get('attendance', {})
+
+    # 날짜 정렬
+    all_dates = sorted(attendance_data.keys())
+
+    # 출결표 만들기: {이름: [출결상태1, 출결상태2, ...]}
+    table = {}
+    for member in members:
+        row = []
+        for date in all_dates:
+            status = attendance_data.get(date, {}).get(member['name'], '')
+            row.append(status)
+        table[member['name']+'('+member['role']+')'] = row
+
+    return render_template('attendance_status.html', dates=all_dates, table=table)
 
 
 if __name__ == '__main__':
