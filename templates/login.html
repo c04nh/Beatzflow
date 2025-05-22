@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}로그인{% endblock %}
+
+{% block content %}
+<h2>로그인</h2>
+<form method="post">
+    <input type="text" name="username" placeholder="아이디"><br>
+    <input type="password" name="password" placeholder="비밀번호"><br>
+    <input type="submit" value="로그인">
+</form>
+{% if error %}<p style="color:red;">{{ error }}</p>{% endif %}
+{% endblock %}

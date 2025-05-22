@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% extends "base.html" %}
+
+{% block title %}멤버 관리{% endblock %}
+
+{% block content %}
+<h2>멤버 등록</h2>
+<form method="post">
+    <input type="text" name="name" placeholder="이름" required>
+    <select name="role">
+        <option value="주체">주체</option>
+        <option value="신입">신입</option>
+    </select>
+    <input type="submit" value="등록">
+</form>
+
+<h3>멤버 목록</h3>
+<ul>
+    {% for member in members %}
+    <li>{{ member.name }} ({{ member.role }})</li>
+    {% endfor %}
+</ul>
+<p><a href="{{ url_for('dashboard') }}">대시보드로 돌아가기</a></p>
+{% endblock %}</title>
+</head>
+<body>
+
+</body>
+</html>
