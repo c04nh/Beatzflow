@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}공지사항{% endblock %}
+
+{% block content %}
+  <h1>📢 공지사항</h1>
+{% if session.get('is_admin') %}
+  <a href="/notices/new">📝 새 공지 작성</a>
+{% endif %}
+
+  <ul>
+    {% for notice in notices %}
+    <li>
+      <a href="/notices/{{ notice.id }}">{{ notice.title }}</a><br>
+      <small>{{ notice.created_at[:10] }}</small>
+    </li>
+    {% endfor %}
+  </ul>
+<p><a href="{{ url_for('dashboard') }}">대시보드로 돌아가기</a></p>
+{% endblock %}

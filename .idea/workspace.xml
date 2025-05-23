@@ -4,13 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de4a6be3-5f60-4142-9312-d57639afb6a1" name="Changes" comment="members">
-      <change afterPath="$PROJECT_DIR$/templates/attendance.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/attendance_status.html" afterDir="false" />
+    <list default="true" id="de4a6be3-5f60-4142-9312-d57639afb6a1" name="Changes" comment="attendance">
+      <change afterPath="$PROJECT_DIR$/data/notices.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/attendance_edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/notice_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/notice_edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/notice_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/notice_new.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/members.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/attendance.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/attendance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/attendance_status.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/attendance_status.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/members.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/members.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,31 +36,32 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2xRUA0pZp6lCgp4OdKinHH3eHSr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Nahyun\PycharmProjects\beatzflow\data" />
       <recent name="C:\Users\Nahyun\PycharmProjects\beatzflow\templates" />
     </key>
   </component>
@@ -71,7 +80,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1747900233066</updated>
-      <workItem from="1747900240075" duration="2580000" />
+      <workItem from="1747900240075" duration="3197000" />
+      <workItem from="1747964551974" duration="3088000" />
+      <workItem from="1747979618416" duration="3297000" />
+      <workItem from="1747995345638" duration="907000" />
+      <workItem from="1748000396972" duration="7111000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -89,7 +102,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747901261277</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="attendance">
+      <option name="closed" value="true" />
+      <created>1747902848911</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1747902848911</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,17 +130,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="members" />
-    <option name="LAST_COMMIT_MESSAGE" value="members" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app.py</url>
-          <line>89</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="attendance" />
+    <option name="LAST_COMMIT_MESSAGE" value="attendance" />
   </component>
 </project>

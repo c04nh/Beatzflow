@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% extends "base.html" %}
 
+
+{% extends "base.html" %}
 {% block title %}멤버 관리{% endblock %}
 
 {% block content %}
@@ -17,16 +14,71 @@
     <input type="submit" value="등록">
 </form>
 
-<h3>멤버 목록</h3>
-<ul>
-    {% for member in members %}
-    <li>{{ member.name }} ({{ member.role }})</li>
-    {% endfor %}
-</ul>
-<p><a href="{{ url_for('dashboard') }}">대시보드로 돌아가기</a></p>
-{% endblock %}</title>
-</head>
-<body>
+<h2>멤버 목록</h2>
 
-</body>
-</html>
+<!-- 수정 모드 토글 버튼 -->
+<button id="editToggleBtn" onclick="toggleEditMode()">수정 모드 켜기</button>
+
+<form method="post" action="{{ url_for('update_members') }}">
+    <button type="submit" name="edit_index" class="edit-only" style="display:none;">확인</button>
+<table border="1">
+    <thead>
+        <tr>
+            <th>이름</th>
+            <th>역할</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in members %}
+        <tr>
+            <td>
+                <span>{{ loop.index0 + 1 }}</span>
+            </td>
+            <td>
+                <span class="view">{{ member.name }}</span>
+                <input type="text" name="name_{{ loop.index0 }}" value="{{ member.name }}" class="edit" style="display:none;" required>
+            </td>
+            <td>
+                <span class="view">{{ member.role }}</span>
+                <select name="role_{{ loop.index0 }}" class="edit" style="display:none;">
+                    <option value="주체" {% if member.role == "주체" %}selected{% endif %}>주체</option>
+                    <option value="신입" {% if member.role == "신입" %}selected{% endif %}>신입</option>
+                </select>
+            </td>
+
+            <td class="edit-only" style="display:none;">
+                <button type="button" onclick="confirmDelete('{{ member.name }}')">삭제</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</form>
+<p><a href="{{ url_for('dashboard') }}">대시보드로 돌아가기</a></p>
+
+<script>
+function toggleEditMode() {
+    const editOnlyElems = document.querySelectorAll(".edit-only");
+    const viewElems = document.querySelectorAll(".view");
+    const editElems = document.querySelectorAll(".edit");
+    const toggleBtn = document.getElementById("editToggleBtn");
+
+    const editing = editOnlyElems[0].style.display === "table-cell";
+
+    editOnlyElems.forEach(el => el.style.display = editing ? "none" : "table-cell");
+    viewElems.forEach(el => el.style.display = editing ? "inline" : "none");
+    editElems.forEach(el => el.style.display = editing ? "none" : "inline");
+
+    toggleBtn.textContent = editing ? "수정 모드 켜기" : "수정 모드 끄기";
+}
+
+function confirmDelete(name) {
+    if (confirm(name + " 멤버를 삭제하시겠습니까?")) {
+        fetch(`/delete_member/${name}`, {
+            method: 'POST'
+        }).then(() => window.location.reload());
+    }
+}
+</script>
+
+{% endblock %}

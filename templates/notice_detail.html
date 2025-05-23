@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ notice.title }}</title>
+</head>
+<body>
+  <h1>{{ notice.title }}</h1>
+  <small>{{ notice.created_at[:10] }}</small>
+  <hr>
+  <p>{{ notice.content }}</p>
+  <br>
+  <a href="/notices">← 공지 목록으로</a>
+<hr>
+{% if session.get('is_admin') %}
+  <a href="/notices/{{ notice.id }}/edit">수정</a>
+  <a href="/notices/{{ notice.id }}/delete">삭제</a>
+{% endif %}
+</body>
+</html>

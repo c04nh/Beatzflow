@@ -1,13 +1,50 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 - 비츠플로우</title>
+</head>
+<body>
+    <h1>비츠플로우 로그인</h1>
 
-{% block title %}로그인{% endblock %}
+    <form method="POST" action="{{ url_for('login') }}">
+  <label>
+    <input type="radio" name="role" value="member" checked onchange="toggleAdminFields()"> 일반 멤버
+  </label>
+  <label>
+    <input type="radio" name="role" value="admin" onchange="toggleAdminFields()"> 관리자
+  </label>
 
-{% block content %}
-<h2>로그인</h2>
-<form method="post">
-    <input type="text" name="username" placeholder="아이디"><br>
-    <input type="password" name="password" placeholder="비밀번호"><br>
-    <input type="submit" value="로그인">
+  <div id="admin-fields" style="display:none; margin-top: 10px;">
+    <label for="username">아이디:</label>
+    <input type="text" id="username" name="username"><br>
+
+    <label for="password">비밀번호:</label>
+    <input type="password" id="password" name="password"><br>
+  </div>
+
+  <button type="submit">로그인</button>
 </form>
-{% if error %}<p style="color:red;">{{ error }}</p>{% endif %}
-{% endblock %}
+</body>
+</html>
+
+<script>
+  function toggleAdminFields() {
+    const adminFields = document.getElementById('admin-fields');
+    const role = document.querySelector('input[name="role"]:checked').value;
+
+    if (role === 'admin') {
+      adminFields.style.display = 'block';
+      // 아이디, 비밀번호 필수 처리
+      document.getElementById('username').setAttribute('required', 'required');
+      document.getElementById('password').setAttribute('required', 'required');
+    } else {
+      adminFields.style.display = 'none';
+      document.getElementById('username').removeAttribute('required');
+      document.getElementById('password').removeAttribute('required');
+    }
+  }
+
+  // 초기 상태 세팅
+  window.onload = toggleAdminFields;
+</script>

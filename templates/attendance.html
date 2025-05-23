@@ -5,7 +5,8 @@
 {% block content %}
 <h2>출결 등록</h2>
 <form method="post">
-    <label>날짜: <input type="date" name="date" value="{{ today }}"></label>
+    <label for="date">날짜 선택:</label>
+    <input type="date" id="date" name="date" required>
     <table border="1">
         <tr>
             <th>이름</th>
@@ -19,6 +20,7 @@
                     <option value="출석">출석</option>
                     <option value="사유결석">사유결석</option>
                     <option value="무단결석">무단결석</option>
+                    <option value="--">--</option>
                 </select>
             </td>
         </tr>
@@ -27,4 +29,24 @@
     <input type="submit" value="저장">
 </form>
 <p><a href="{{ url_for('dashboard') }}">대시보드로 돌아가기</a></p>
+
+<script>
+    const usedDates = {{ dates | safe }};
+    const dateInput = document.getElementById("date");
+
+    dateInput.addEventListener("change", function () {
+        const selectedDate = this.value;
+        if (usedDates.includes(selectedDate)) {
+            alert("이미 출결이 등록된 날짜입니다. 다른 날짜를 선택해주세요.");
+            this.value = "";
+        }
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === '1') {
+        alert('출결 등록이 완료되었습니다!');
+    }
+
+</script>
+
 {% endblock %}

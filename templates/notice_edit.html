@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>공지 수정</title>
+</head>
+<body>
+  <h1>✏️ 공지사항 수정</h1>
+  <form method="post">
+    <label>제목:<br>
+      <input type="text" name="title" value="{{ notice.title }}" required>
+    </label><br><br>
+
+    <label>내용:<br>
+      <textarea name="content" rows="10" cols="50" required>{{ notice.content }}</textarea>
+    </label><br><br>
+
+    <button type="submit">저장</button>
+    <a href="{{ url_for('notice_detail', notice_id=notice.id) }}">취소</a>
+  </form>
+</body>
+</html>

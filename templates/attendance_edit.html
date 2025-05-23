@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}출결 수정{% endblock %}
+
+{% block content %}
+<h2>출결 수정</h2>
+<form method="post">
+<table border="1" style="border-collapse: collapse; text-align: center;">
+    <thead>
+        <tr>
+            <th>이름</th>
+            {% for date in dates %}
+                <th>{{ date }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for name, role in name_role_list %}
+        <tr>
+            <td><strong>{{ name }}({{role}})</strong></td>
+            {% for date in dates %}
+            <td>
+                <select name="{{ name }}_{{ date }}">
+                    {% set current = attendance_data[date][name] if attendance_data[date][name] is defined else '' %}
+                    <option value="출석"  {% if current == "출석" %}selected{% endif %}>출석</option>
+                    <option value="사유결석"  {% if current == "사유결석" %}selected{% endif %}>사유결석</option>
+                    <option value="무단결석"  {% if current == "무단결석" %}selected{% endif %}>무단결석</option>
+                    <option value="--"  {% if current == "--" %}selected{% endif %}>--</option>
+                </select>
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<button type="submit">저장하기</button>
+</form>
+<p><a href="{{ url_for('attendance_status') }}">출결 현황으로 돌아가기</a></p>
+{% endblock %}

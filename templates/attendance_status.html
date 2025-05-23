@@ -24,5 +24,11 @@
         {% endfor %}
     </tbody>
 </table>
+{% if session.get('is_admin') %}
+  <form action="{{ url_for('attendance_edit') }}">
+    <button type="submit">수정</button>
+</form>
+{% endif %}
 <p><a href="{{ url_for('dashboard') }}">대시보드로 돌아가기</a></p>
 {% endblock %}
+
