@@ -7,6 +7,7 @@
 <table border="1" style="border-collapse: collapse; text-align: center;">
     <thead>
         <tr>
+            <th></th>
             <th>이름</th>
             {% for date in dates %}
                 <th>{{ date }}</th>
@@ -16,6 +17,9 @@
     <tbody>
         {% for name, row in table.items() %}
         <tr>
+            <td>
+                <span>{{ loop.index0 + 1 }}</span>
+            </td>
             <td><strong>{{ name }}</strong></td>
             {% for status in row %}
                 <td>{{ status }}</td>
