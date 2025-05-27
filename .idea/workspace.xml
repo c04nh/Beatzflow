@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de4a6be3-5f60-4142-9312-d57639afb6a1" name="Changes" comment="delete member">
-      <change beforePath="$PROJECT_DIR$/templates/attendance_status.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/attendance_status.html" afterDir="false" />
+    <list default="true" id="de4a6be3-5f60-4142-9312-d57639afb6a1" name="Changes" comment="table 수정">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/members.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/members.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/attendance.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/attendance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/attendance_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/attendance_edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/members.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/members.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +79,8 @@
       <workItem from="1747995345638" duration="907000" />
       <workItem from="1748000396972" duration="7135000" />
       <workItem from="1748168337209" duration="607000" />
-      <workItem from="1748180121559" duration="1028000" />
+      <workItem from="1748180121559" duration="1092000" />
+      <workItem from="1748347119304" duration="5508000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -116,7 +122,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748181007189</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="table 수정">
+      <option name="closed" value="true" />
+      <created>1748181214022</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1748181214022</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +153,7 @@
     <MESSAGE value="attendance" />
     <MESSAGE value="attendance edit / members edit / notice" />
     <MESSAGE value="delete member" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete member" />
+    <MESSAGE value="table 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="table 수정" />
   </component>
 </project>

@@ -18,16 +18,6 @@ def index():
         return redirect(url_for('dashboard'))
     return redirect(url_for('login'))
 
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     if request.method == 'POST':
-#         userid = request.form['username']
-#         passwd = request.form['password']
-#         if userid == ADMIN_ID and passwd == ADMIN_PW:
-#             session['user'] = userid
-#             return redirect(url_for('dashboard'))
-#         return render_template('login.html', error="아이디 또는 비밀번호가 틀렸습니다.")
-#     return render_template('login.html')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -73,6 +63,11 @@ def save_data(data):
     with open("data/members.json", "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
+def generate_member_id(members):
+    if not members:
+        return 1
+    return max(member['id'] for member in members) + 1
+
 @app.route('/members', methods=['GET', 'POST'])
 def manage_members():
     if 'is_admin' not in session:
@@ -81,9 +76,18 @@ def manage_members():
     data = load_data()
 
     if request.method == 'POST':
+
+        new_id = generate_member_id(data['members'])
+
         name = request.form['name']
         role = request.form['role']
-        new_member = {"name": name, "role": role}
+
+        new_member = {
+            "id": new_id,
+            "name": name,
+            "role": role
+        }
+
         data['members'].append(new_member)
         save_data(data)
         return redirect(url_for('manage_members'))
@@ -112,16 +116,15 @@ def update_members():
 
     return redirect(url_for('manage_members'))
 
-@app.route('/delete_member/<name>', methods=['POST'])
-def delete_member(name):
+@app.route('/delete_member/<id>', methods=['POST'])
+def delete_member(id):
     with open('data/members.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    data['members'] = [m for m in data['members'] if m['name'] != name]
+    data['members'] = [m for m in data['members'] if m['id'] != int(id)]
 
     for date in data['attendance']:
-        del data["attendance"][date][name]
-        print(data["attendance"])
+        del data["attendance"][date][id]
 
     with open('data/members.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
@@ -143,10 +146,10 @@ def attendance():
     if request.method == 'POST':
         date = request.form['date']
         for member in members:
-            status = request.form.get(member['name'])
+            status = request.form.get(str(member['id']))
             if date not in data['attendance']:
                 data['attendance'][date] = {}
-            data['attendance'][date][member['name']] = status
+            data['attendance'][date][str(member['id'])] = status
         save_data(data)
         return redirect(url_for('attendance', success=1))
 
@@ -171,7 +174,7 @@ def attendance_status():
     for member in members:
         row = []
         for date in all_dates:
-            status = attendance_data.get(date, {}).get(member['name'], '')
+            status = attendance_data.get(date, {}).get(str(member['id']), '')
             row.append(status)
         table[member['name']+'('+member['role']+')'] = row
 
@@ -184,7 +187,8 @@ def attendance_edit():
         data = json.load(f)
 
     attendance_data = data.get("attendance", {})
-    member_list = data.get("members", [])
+    member_list = data.get("members", {})
+    members = sorted(data['members'], key=lambda m: (m['role'] != '주체', m['name']))
     dates = sorted(attendance_data.keys())
 
     role_dict = {member['name']: member['role'] for member in member_list}
@@ -199,20 +203,16 @@ def attendance_edit():
         role_priority = 0 if role_dict.get(name) == '주체' else 1
         return (role_priority, name)
 
-    sorted_names = sorted(names, key=sort_key)
-
-    name_role_list = [(name, role_dict.get(name, "역할없음")) for name in sorted_names]
-
     if request.method == 'POST':
         # 폼으로부터 수정된 값 받아오기
-        for name in names:
+        for member in members:
             for date in dates:
-                key = f"{name}_{date}"
+                key = f"{str(member['id'])}_{date}"
                 new_status = request.form.get(key)
                 if new_status:
                     if date not in attendance_data:
                         attendance_data[date] = {}
-                    attendance_data[date][name] = new_status
+                    attendance_data[date][str(member['id'])] = new_status
 
         # 수정된 데이터 저장
         data["attendance"] = attendance_data
@@ -221,7 +221,7 @@ def attendance_edit():
 
         return redirect(url_for('attendance_status'))
 
-    return render_template('attendance_edit.html', attendance_data=attendance_data, dates=dates, name_role_list=name_role_list)
+    return render_template('attendance_edit.html', attendance_data=attendance_data, dates=dates, members=members)
 
 def load_notices():
     with open(NOTICE_PATH, 'r', encoding='utf-8') as f:
