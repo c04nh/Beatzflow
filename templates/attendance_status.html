@@ -22,7 +22,11 @@
             </td>
             <td><strong>{{ name }}</strong></td>
             {% for status in row %}
-                <td>{{ status }}</td>
+                {% if status %}
+                    <td>{{ status }}</td>
+                {% else %}
+                    <td>--</td>
+                {% endif %}
             {% endfor %}
         </tr>
         {% endfor %}

@@ -4,26 +4,30 @@
 {% block title %}멤버 관리{% endblock %}
 
 {% block content %}
-<h2>멤버 등록</h2>
-<form method="post">
-    <input type="text" name="name" placeholder="이름" required>
-    <select name="role">
-        <option value="주체">주체</option>
-        <option value="신입">신입</option>
-    </select>
-    <input type="submit" value="등록">
-</form>
-
 <h2>멤버 목록</h2>
 
 <!-- 수정 모드 토글 버튼 -->
 <button id="editToggleBtn" onclick="toggleEditMode()">수정 모드 켜기</button>
+<button id="btn-open-modal" onclick="openModal()">Modal열기</button>
+<div class="modal" style="display: none">
+    <form method="post">
+        <h2>멤버 등록</h2>
+        <input type="text" name="name" placeholder="이름" required>
+        <select name="role">
+        <option value="주체">주체</option>
+        <option value="신입">신입</option>
+        </select>
+        <input type="submit" value="등록">
+    </form>
+</div>
+
 
 <form method="post" action="{{ url_for('update_members') }}">
     <button type="submit" name="edit_index" class="edit-only" style="display:none;">확인</button>
 <table border="1" style="border-collapse: collapse; text-align: center;">
     <thead>
         <tr>
+            <th></th>
             <th>이름</th>
             <th>역할</th>
         </tr>
@@ -57,6 +61,16 @@
 <p><a href="{{ url_for('dashboard') }}">대시보드로 돌아가기</a></p>
 
 <script>
+
+
+    function openModal() {
+
+        const modal = document.querySelector('.modal');
+        const btnOpenModal = document.querySelector('.btn-open-modal');
+        modal.style.display = "flex";
+
+    }
+
 function toggleEditMode() {
     const editOnlyElems = document.querySelectorAll(".edit-only");
     const viewElems = document.querySelectorAll(".view");

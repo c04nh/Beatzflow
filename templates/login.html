@@ -8,23 +8,24 @@
     <h1>비츠플로우 로그인</h1>
 
     <form method="POST" action="{{ url_for('login') }}">
-  <label>
-    <input type="radio" name="role" value="member" checked onchange="toggleAdminFields()"> 일반 멤버
-  </label>
-  <label>
-    <input type="radio" name="role" value="admin" onchange="toggleAdminFields()"> 관리자
-  </label>
+        <label>
+            <input type="radio" name="role" value="admin" checked onchange="toggleAdminFields()"> 팀장
+        </label>
+        <label>
+            <input type="radio" name="role" value="member" onchange="toggleAdminFields()"> 팀원
+        </label>
 
-  <div id="admin-fields" style="display:none; margin-top: 10px;">
-    <label for="username">아이디:</label>
-    <input type="text" id="username" name="username"><br>
 
-    <label for="password">비밀번호:</label>
-    <input type="password" id="password" name="password"><br>
-  </div>
+        <div id="admin-fields" style="display:none; margin-top: 10px;">
+            <label for="username">아이디:</label>
+            <input type="text" id="username" name="username"><br>
 
-  <button type="submit">로그인</button>
-</form>
+            <label for="password">비밀번호:</label>
+            <input type="password" id="password" name="password"><br>
+        </div>
+
+        <button type="submit">로그인</button>
+    </form>
 </body>
 </html>
 

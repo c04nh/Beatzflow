@@ -22,10 +22,10 @@
             <td>
                 <select name="{{ member.id }}_{{ date }}">
                     {% set current = attendance_data[date][member.id|string] if attendance_data[date][member.id|string] is defined else '' %}
-                    <option value="출석"  {% if current == "출석" %}selected{% endif %}>출석</option>
-                    <option value="사유결석"  {% if current == "사유결석" %}selected{% endif %}>사유결석</option>
-                    <option value="무단결석"  {% if current == "무단결석" %}selected{% endif %}>무단결석</option>
-                    <option value="--"  {% if current == "--" %}selected{% endif %}>--</option>
+                    <option value="출석"  {% if current =="출석" %}selected{% endif %}>출석</option>
+                    <option value="사유결석"  {% if current =="사유결석" %}selected{% endif %}>사유결석</option>
+                    <option value="무단결석"  {% if current =="무단결석" %}selected{% endif %}>무단결석</option>
+                    <option value="--" {% if current =="--" or not current %}selected{% endif %}>--</option>
                 </select>
             </td>
             {% endfor %}

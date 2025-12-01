@@ -124,7 +124,8 @@ def delete_member(id):
     data['members'] = [m for m in data['members'] if m['id'] != int(id)]
 
     for date in data['attendance']:
-        del data["attendance"][date][id]
+        if id in data["attendance"][date]:
+            del data["attendance"][date][id]
 
     with open('data/members.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
