@@ -21,26 +21,27 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        role = request.form.get('role')
-        if role == 'admin':
-            username = request.form.get('username')
-            password = request.form.get('password')
-            user = users.get(username)
-
-            if user and user['password'] == password and user['role'] == 'admin':
-                session['username'] = username
-                session['is_admin'] = True
-                return redirect(url_for('dashboard'))
-            else:
-                flash('관리자 아이디 또는 비밀번호가 틀렸습니다.')
-                return redirect(url_for('login'))
-
-        else:  # 일반 멤버는 아이디 비번 없이 바로 로그인 처리 (원하는 방식에 따라 수정 가능)
             session['username'] = 'member_user'  # 여기 멤버 실제 ID를 넣어야 하면 추가 로직 필요
             session['is_admin'] = False
             return redirect(url_for('dashboard'))
 
     return render_template('login.html')
+
+@app.route('/login/leader', methods=['GET', 'POST'])
+def login_leader():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    user = users.get(username)
+
+    if user and user['password'] == password and user['role'] == 'admin':
+        session['username'] = username
+        session['is_admin'] = True
+        return redirect(url_for('dashboard'))
+    else:
+        flash('관리자 아이디 또는 비밀번호가 틀렸습니다.')
+        return render_template('login_leader.html')
+
+    return render_template('login_leader.html')
 
 @app.route('/dashboard')
 def dashboard():

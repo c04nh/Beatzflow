@@ -6,46 +6,11 @@
 </head>
 <body>
     <h1>비츠플로우 로그인</h1>
-
+    <button onclick="location.href='/login/leader'">팀장 로그인</button>
     <form method="POST" action="{{ url_for('login') }}">
-        <label>
-            <input type="radio" name="role" value="admin" checked onchange="toggleAdminFields()"> 팀장
-        </label>
-        <label>
-            <input type="radio" name="role" value="member" onchange="toggleAdminFields()"> 팀원
-        </label>
-
-
-        <div id="admin-fields" style="display:none; margin-top: 10px;">
-            <label for="username">아이디:</label>
-            <input type="text" id="username" name="username"><br>
-
-            <label for="password">비밀번호:</label>
-            <input type="password" id="password" name="password"><br>
-        </div>
-
-        <button type="submit">로그인</button>
+        <button>팀원 로그인</button>
     </form>
 </body>
 </html>
-
 <script>
-  function toggleAdminFields() {
-    const adminFields = document.getElementById('admin-fields');
-    const role = document.querySelector('input[name="role"]:checked').value;
-
-    if (role === 'admin') {
-      adminFields.style.display = 'block';
-      // 아이디, 비밀번호 필수 처리
-      document.getElementById('username').setAttribute('required', 'required');
-      document.getElementById('password').setAttribute('required', 'required');
-    } else {
-      adminFields.style.display = 'none';
-      document.getElementById('username').removeAttribute('required');
-      document.getElementById('password').removeAttribute('required');
-    }
-  }
-
-  // 초기 상태 세팅
-  window.onload = toggleAdminFields;
 </script>
