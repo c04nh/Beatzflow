@@ -29,17 +29,18 @@ def login():
 
 @app.route('/login/leader', methods=['GET', 'POST'])
 def login_leader():
-    username = request.form.get('username')
-    password = request.form.get('password')
-    user = users.get(username)
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        user = users.get(username)
 
-    if user and user['password'] == password and user['role'] == 'admin':
-        session['username'] = username
-        session['is_admin'] = True
-        return redirect(url_for('dashboard'))
-    else:
-        flash('관리자 아이디 또는 비밀번호가 틀렸습니다.')
-        return render_template('login_leader.html')
+        if user and user['password'] == password and user['role'] == 'admin':
+            session['username'] = username
+            session['is_admin'] = True
+            return redirect(url_for('dashboard'))
+        else:
+            flash('관리자 아이디 또는 비밀번호가 틀렸습니다.')
+            return render_template('login_leader.html')
 
     return render_template('login_leader.html')
 
