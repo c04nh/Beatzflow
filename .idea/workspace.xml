@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de4a6be3-5f60-4142-9312-d57639afb6a1" name="Changes" comment="member 등록 modal 추가&#10;attendance 수정">
-      <change afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/login_leader.html" afterDir="false" />
+    <list default="true" id="de4a6be3-5f60-4142-9312-d57639afb6a1" name="Changes" comment="login 수정">
+      <change afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login_leader.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login_leader.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +41,7 @@
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
     "JavaScript Debug.attendance_edit.html.executor": "Run",
+    "JavaScript Debug.login.html.executor": "Run",
     "JavaScript Debug.login_leader.html.executor": "Run",
     "Python.app.executor": "Run",
     "Python.test.executor": "Run",
@@ -58,6 +59,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Nahyun\PycharmProjects\beatzflow\static" />
       <recent name="C:\Users\Nahyun\PycharmProjects\beatzflow\data" />
       <recent name="C:\Users\Nahyun\PycharmProjects\beatzflow\templates" />
     </key>
@@ -88,7 +90,8 @@
       <workItem from="1749473133333" duration="320000" />
       <workItem from="1749474359247" duration="456000" />
       <workItem from="1764587332956" duration="4147000" />
-      <workItem from="1767243315989" duration="2576000" />
+      <workItem from="1767243315989" duration="2644000" />
+      <workItem from="1767621424354" duration="8504000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -154,7 +157,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764590858371</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="login 수정">
+      <option name="closed" value="true" />
+      <created>1767245953263</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1767245953263</updated>
+    </task>
+    <task id="LOCAL-00010" summary="login 수정">
+      <option name="closed" value="true" />
+      <created>1767622907227</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1767622907227</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,10 +199,11 @@
     <MESSAGE value="table 수정" />
     <MESSAGE value="member id 추가" />
     <MESSAGE value="member 등록 modal 추가&#10;attendance 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="member 등록 modal 추가&#10;attendance 수정" />
+    <MESSAGE value="login 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="login 수정" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/beatzflow$test.coverage" NAME="test Coverage Results" MODIFIED="1749474746948" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Downloads" />
-    <SUITE FILE_PATH="coverage/beatzflow$app.coverage" NAME="app Coverage Results" MODIFIED="1767245794453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/beatzflow$app.coverage" NAME="app Coverage Results" MODIFIED="1767629579929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
