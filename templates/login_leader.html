@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>로그인 - 비츠플로우</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 </head>
 <body class="login">
     {%with messages = get_flashed_messages()%}
@@ -17,7 +17,7 @@
     <div class="container">
         <h1 class="h1">BeatzFlow</h1>
         <div class="login_container">
-            <button class="back-btn" onclick="location.href='/login'"><i class="fi fi-rs-angle-left"></i></button>
+            <button class="back-btn" onclick="location.href='/login'"><i class="fi fi-rr-angle-left"></i></button>
             <div class="login_c">
                 <form method="POST" action="{{ url_for('login_leader') }}">
                     <div id="admin-fields">

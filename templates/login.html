@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>로그인 - 비츠플로우</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 </head>
 <body class="login">
 <div class="container">
@@ -13,11 +13,11 @@
         <div class="login_c">
             <p>로그인 방법을 선택하세요</p>
             <button class="btn" onclick="location.href='/login/leader'">
-                <i class="fi fi-rs-lock"></i> 팀장 로그인
+                <i class="fi fi-rr-lock"></i> 팀장 로그인
             </button>
             <form method="POST" action="{{ url_for('login') }}">
                 <button class="btn">
-                    <i class="fi fi-rs-user"></i> 팀원 로그인
+                    <i class="fi fi-rr-user"></i> 팀원 로그인
                 </button>
             </form>
         </div>

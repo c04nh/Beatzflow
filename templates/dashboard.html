@@ -3,15 +3,48 @@
 {% block title %}대시보드{% endblock %}
 
 {% block content %}
-<h2>환영합니다</h2>
 
-<p><a href="{{ url_for('logout') }}">로그아웃</a></p>
+<div class="title">
+    <h1>BeatzFlow</h1>
+    <button onclick="location.href='/login'"><i class="fi fi-rr-sign-out-alt"></i></button>
+</div>
+
+
+<div class="content">
 {% if session.get('is_admin') %}
-  <li><a href="{{ url_for('manage_members') }}">멤버 관리</a></li>
-    <li><a href="{{ url_for('attendance') }}">출결 등록</a></li>
-{% endif %}
+    <div class="menu-parent">
+        <div class="menu-container" onclick="location.href='/members'">
+            <div>
+                <i class="fi fi-rr-users"></i>
+                <p>멤버 관리</p>
+            </div>
+            <p>팀원들을 등록하고 관리하세요</p>
 
-    <li><a href="{{ url_for('attendance_status') }}">출결 현황</a></li>
-    <li><a href="{{ url_for('notice_list') }}">공지사항</a></li>
-</ul>
+        </div>
+        <div class="menu-container" onclick="location.href='/attendance'">
+            <div>
+                <i class="fi fi-rr-calendar-check"></i>
+                <p>출결 등록</p>
+            </div>
+            <p>팀원들의 출결을 등록하세요</p>
+        </div>
+    </div>
+{% endif %}
+    <div class="menu-parent">
+        <div class="menu-container" onclick="location.href='/attendance/status'">
+            <div>
+                <i class="fi fi-rr-calendar-lines"></i>
+                <p>출결 현황</p>
+            </div>
+            <p>전체 팀원의 출결 현황을 확인하세요</p>
+        </div>
+        <div class="menu-container" onclick="location.href='/notices'">
+            <div>
+                <i class="fi fi-rr-document"></i>
+                <p>공지사항</p>
+            </div>
+            <p>최신 공지사항을 확인하세요</p>
+        </div>
+    </div>
+</div>
 {% endblock %}
