@@ -4,94 +4,133 @@
 {% block title %}멤버 관리{% endblock %}
 
 {% block content %}
-<h2>멤버 목록</h2>
 
-<!-- 수정 모드 토글 버튼 -->
-<button id="editToggleBtn" onclick="toggleEditMode()">수정 모드 켜기</button>
-<button id="btn-open-modal" onclick="openModal()">Modal열기</button>
-<div class="modal" style="display: none">
-    <form method="post">
-        <h2>멤버 등록</h2>
-        <input type="text" name="name" placeholder="이름" required>
-        <select name="role">
-        <option value="주체">주체</option>
-        <option value="신입">신입</option>
-        </select>
-        <input type="submit" value="등록">
-    </form>
+<div class="content">
+    <div class="member-list">
+        <div class="list-header">
+            <button class="header-back-btn" onclick="location.href='/dashboard'"><i class="fi fi-rr-angle-left"></i></button>
+            <h2>멤버 목록</h2>
+            <div>
+                <button id="btn-modal" onclick="openModal()">
+                    <i class="fi fi-rr-user-add"></i>
+                    멤버 등록
+                </button>
+                <button type="submit" name="edit_index" class="edit-only" style="display:none;" onclick="submitChanges()">확인</button>
+                <button id="editToggleBtn" onclick="toggleEditMode()">
+                    <i class="fi fi-rr-edit"></i>
+                    멤버 수정
+                </button>
+            </div>
+        </div>
+
+        <div class="modal">
+            <div class="modal-content">
+                <form method="post">
+                    <div class="form-header">
+                        <h2>멤버 등록</h2>
+                        <button class="close-btn" onclick="closeModal()">X</button>
+                    </div>
+                    <div>
+                        <p>이름</p>
+                        <input type="text" name="name" placeholder="팀원 이름을 입력하세요" required>
+                        <p>역할</p>
+                        <select name="role">
+                            <option value="주체">주체</option>
+                            <option value="신입">신입</option>
+                        </select>
+                    </div>
+                    <button id="form-btn" type="submit">
+                        <i class="fi fi-rr-user-add"></i>
+                        등록
+                    </button>
+                </form>
+            </div>
+        </div>
+
+
+        <form method="post" action="{{ url_for('update_members') }}" id="member-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="20%"></th>
+                        <th width="50%">이름</th>
+                        <th>역할</th>
+                        <th class="edit-only" style="display:none;" width="48px">삭제</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for member in members %}
+                    <tr>
+                        <td>
+                            <span>{{ loop.index0 + 1 }}</span>
+                        </td>
+                        <td>
+                            <span class="view">{{ member.name }}</span>
+                            <input type="text" name="name_{{ loop.index0 }}" value="{{ member.name }}" class="edit" style="display:none;" required>
+                        </td>
+                        <td>
+                            <span class="view role {{ member.role }}">{{ member.role }}</span>
+                            <select name="role_{{ loop.index0 }}" class="edit" style="display:none;">
+                                <option value="주체" {% if member.role == "주체" %}selected{% endif %}>주체</option>
+                                <option value="신입" {% if member.role == "신입" %}selected{% endif %}>신입</option>
+                            </select>
+                        </td>
+
+                        <td class="edit-only" style="display:none;">
+                            <button type="button" onclick="confirmDelete('{{ member.id }}', '{{ member.name }}')">
+                                <i class="fi fi-rr-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+
 </div>
 
-
-<form method="post" action="{{ url_for('update_members') }}">
-    <button type="submit" name="edit_index" class="edit-only" style="display:none;">확인</button>
-<table border="1" style="border-collapse: collapse; text-align: center;">
-    <thead>
-        <tr>
-            <th></th>
-            <th>이름</th>
-            <th>역할</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for member in members %}
-        <tr>
-            <td>
-                <span>{{ loop.index0 + 1 }}</span>
-            </td>
-            <td>
-                <span class="view">{{ member.name }}</span>
-                <input type="text" name="name_{{ loop.index0 }}" value="{{ member.name }}" class="edit" style="display:none;" required>
-            </td>
-            <td>
-                <span class="view">{{ member.role }}</span>
-                <select name="role_{{ loop.index0 }}" class="edit" style="display:none;">
-                    <option value="주체" {% if member.role == "주체" %}selected{% endif %}>주체</option>
-                    <option value="신입" {% if member.role == "신입" %}selected{% endif %}>신입</option>
-                </select>
-            </td>
-
-            <td class="edit-only" style="display:none;">
-                <button type="button" onclick="confirmDelete('{{ member.id }}')">삭제</button>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-</form>
-<p><a href="{{ url_for('dashboard') }}">대시보드로 돌아가기</a></p>
-
 <script>
-
-
     function openModal() {
-
         const modal = document.querySelector('.modal');
-        const btnOpenModal = document.querySelector('.btn-open-modal');
-        modal.style.display = "flex";
-
+        modal.style.display = "block";
     }
 
-function toggleEditMode() {
-    const editOnlyElems = document.querySelectorAll(".edit-only");
-    const viewElems = document.querySelectorAll(".view");
-    const editElems = document.querySelectorAll(".edit");
-    const toggleBtn = document.getElementById("editToggleBtn");
-
-    const editing = editOnlyElems[0].style.display === "table-cell";
-
-    editOnlyElems.forEach(el => el.style.display = editing ? "none" : "table-cell");
-    viewElems.forEach(el => el.style.display = editing ? "inline" : "none");
-    editElems.forEach(el => el.style.display = editing ? "none" : "inline");
-
-    toggleBtn.textContent = editing ? "수정 모드 켜기" : "수정 모드 끄기";
-}
-
-function confirmDelete(name) {
-    if (confirm(name + " 멤버를 삭제하시겠습니까?")) {
-        fetch(`/delete_member/${name}`, {
-            method: 'POST'
-        }).then(() => window.location.reload());
+    function closeModal() {
+        const modal = document.querySelector('.modal');
+        modal.style.display = "none";
     }
+
+    function toggleEditMode() {
+        const editOnlyElems = document.querySelectorAll(".edit-only");
+        const viewElems = document.querySelectorAll(".view");
+        const editElems = document.querySelectorAll(".edit");
+        const toggleBtn = document.getElementById("editToggleBtn");
+        const modalBtn = document.getElementById("btn-modal");
+
+        const editing = editOnlyElems[0].style.display === "table-cell";
+
+        editOnlyElems.forEach(el => el.style.display = editing ? "none" : "table-cell");
+        viewElems.forEach(el => el.style.display = editing ? "inline" : "none");
+        editElems.forEach(el => el.style.display = editing ? "none" : "inline");
+
+        toggleBtn.innerHTML = editing ? '<i class="fi fi-rr-edit"></i> 멤버 수정' : "취소";
+        modalBtn.style.display = editing ? "inline" : "none";
+    }
+
+    function submitChanges(){
+        const form = document.getElementById("member-list");
+        if (confirm("수정된 내용을 저장하시겠습니까?")) {
+            form.submit(); // 여기서 서버로 전송되고 페이지가 새로고침 됩니다.
+        }
+    }
+
+    function confirmDelete(id, name) {
+        if (confirm(name + "를 삭제하시겠습니까?")) {
+            fetch(`/delete_member/${id}`, {
+                method: 'POST'
+            }).then(() => window.location.reload());
+        }
 }
 </script>
 
