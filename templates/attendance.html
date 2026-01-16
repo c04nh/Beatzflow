@@ -3,32 +3,51 @@
 {% block title %}출결 관리{% endblock %}
 
 {% block content %}
-<h2>출결 등록</h2>
-<form method="post">
-    <label for="date">날짜 선택:</label>
-    <input type="date" id="date" name="date" required>
-    <table border="1">
-        <tr>
-            <th>이름</th>
-            <th>출결</th>
-        </tr>
-        {% for member in members %}
-        <tr>
-            <td>{{ member.name }}</td>
-            <td>
-                <select name="{{ member.id }}">
-                    <option value="출석">출석</option>
-                    <option value="사유결석">사유결석</option>
-                    <option value="무단결석">무단결석</option>
-                    <option value="--">--</option>
-                </select>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-    <input type="submit" value="저장">
-</form>
-<p><a href="{{ url_for('dashboard') }}">대시보드로 돌아가기</a></p>
+<div class="content">
+    <div class="content-container">
+        <div class="content-header">
+            <button class="header-back-btn" onclick="location.href='/dashboard'"><i class="fi fi-rr-angle-left"></i></button>
+            <h2>출결 등록</h2>
+        </div>
+        <form method="post" id="attendance">
+            <label for="date">날짜 선택</label>
+            <input type="date" id="date" name="date" required>
+            <table>
+                <tr>
+                    <th width="20%"></th>
+                    <th width="30%">이름</th>
+                    <th width="20%">역할</th>
+                    <th width="30%">출결</th>
+                </tr>
+                {% for member in members %}
+                    <tr>
+                        <td>
+                            <span>{{ loop.index0 + 1 }}</span>
+                        </td>
+                        <td>
+                            <span>{{ member.name }}</span>
+                        </td>
+                        <td>
+                            <span class="role {{ member.role }}">{{ member.role }}</span>
+                        </td>
+                        <td>
+                            <select name="{{ member.id }}">
+                                <option value="출석">출석</option>
+                                <option value="사유결석">사유결석</option>
+                                <option value="무단결석">무단결석</option>
+                                <option value="--">--</option>
+                            </select>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <button type="submit" class="submit-btn">
+                <i class="fi fi-rr-floppy-disks"></i>
+                저장
+            </button>
+        </form>
+    </div>
+</div>
 
 <script>
     const usedDates = {{ dates | safe }};
