@@ -52,10 +52,11 @@
             <table>
                 <thead>
                     <tr>
-                        <th width="20%"></th>
+                        <th width="36px"></th>
                         <th width="50%">이름</th>
                         <th>역할</th>
                         <th class="edit-only" style="display:none;" width="48px">삭제</th>
+                        <th class="none-edit" width="48px"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -75,12 +76,12 @@
                                 <option value="신입" {% if member.role == "신입" %}selected{% endif %}>신입</option>
                             </select>
                         </td>
-
                         <td class="edit-only" style="display:none;">
                             <button type="button" onclick="confirmDelete('{{ member.id }}', '{{ member.name }}')">
                                 <i class="fi fi-rr-trash"></i>
                             </button>
                         </td>
+                        <td class="none-edit"></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -107,6 +108,7 @@
         const editElems = document.querySelectorAll(".edit");
         const toggleBtn = document.getElementById("editToggleBtn");
         const modalBtn = document.getElementById("btn-modal");
+        const noneEdit = document.querySelectorAll(".none-edit");
 
         const editing = editOnlyElems[0].style.display === "table-cell";
 
@@ -116,6 +118,7 @@
 
         toggleBtn.innerHTML = editing ? '<i class="fi fi-rr-edit"></i> 멤버 수정' : "취소";
         modalBtn.style.display = editing ? "inline" : "none";
+        noneEdit.forEach(el => el.className = editing ? "none-edit" : "none-edit hide-col");
     }
 
     function submitChanges(){

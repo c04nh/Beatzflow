@@ -21,6 +21,10 @@ body {
     min-height: 100vh;
 }
 
+th, td{
+    text-align: center;
+}
+
 button:hover{
     cursor: pointer;
 }
@@ -246,7 +250,7 @@ button:hover{
     right: 0px;
 }
 
-.content-header div button{
+.content-header div button, .edit-btn{
     border-radius: 8px;
     border-style: solid;
     border-width: 1.5px;
@@ -259,11 +263,11 @@ button:hover{
     background-color: #6d6d6d;
 }
 
-.content-header div button:hover{
+.content-header div button:hover, .edit-btn:hover{
     background-color: #484848;
 }
 
-.content-header div button i, .submit-btn i{
+.content-header div button i, .submit-btn i, .edit-btn i{
     position: relative;
     top: 2px;
     padding-right: 4px;
@@ -279,7 +283,6 @@ button:hover{
     border-bottom : 1px solid black;
     padding: 4px 12px;
     height: 48px;
-    text-align: left;
 }
 
 .role{
@@ -372,6 +375,19 @@ button:hover{
     padding-left: 4px;
 }
 
+.none-edit{
+    padding:0;
+}
+
+.hide-col {
+  overflow: hidden;
+  width: 0!important;
+  max-width: 0!important;
+  padding: 0!important;
+  border-width: 0!important;
+  font-size: 0!important;
+}
+
 .form-header{
     position: relative;
     display: flex;
@@ -438,4 +454,62 @@ button:hover{
     border-style: solid;
     border-width: 1px;
     margin-left: 4px;
+}
+
+.edit-btn{
+    position: absolute;
+    right: 0;
+}
+
+.table-container{
+    width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+    transform:rotateX(180deg);
+    -ms-transform:rotateX(180deg); /* IE 9 */
+    -webkit-transform:rotateX(180deg)
+}
+
+.table-container table{
+    border-collapse: collapse;
+    font-size: 16px;
+    transform:rotateX(180deg);
+    -ms-transform:rotateX(180deg); /* IE 9 */
+    -webkit-transform:rotateX(180deg);
+    width: 100%;
+}
+
+.table-container th, td{
+    padding-left: 8px;
+    padding-right: 8px;
+    border-bottom : 1px solid black;
+    height: 48px;
+}
+
+.status{
+    display: inline-block;
+    color: white;
+    border-radius: 16px;
+    width: 64px;
+    padding: 4px 12px;
+}
+
+.출석{
+    background-color: green;
+}
+
+.사유결석{
+    background-color: gold;
+}
+
+.무단결석{
+    background-color: red;
+}
+
+.none, .--{
+    background-color: gray;
+}
+
+.table-container select{
+    width: 88px;
 }

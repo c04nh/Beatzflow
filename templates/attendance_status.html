@@ -3,40 +3,56 @@
 {% block title %}출결 현황{% endblock %}
 
 {% block content %}
-<h2>출결 현황</h2>
-<table border="1" style="border-collapse: collapse; text-align: center;">
-    <thead>
-        <tr>
-            <th></th>
-            <th>이름</th>
-            {% for date in dates %}
-                <th>{{ date }}</th>
-            {% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for name, row in table.items() %}
-        <tr>
-            <td>
-                <span>{{ loop.index0 + 1 }}</span>
-            </td>
-            <td><strong>{{ name }}</strong></td>
-            {% for status in row %}
-                {% if status %}
-                    <td>{{ status }}</td>
-                {% else %}
-                    <td>--</td>
-                {% endif %}
-            {% endfor %}
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% if session.get('is_admin') %}
-  <form action="{{ url_for('attendance_edit') }}">
-    <button type="submit">수정</button>
-</form>
-{% endif %}
-<p><a href="{{ url_for('dashboard') }}">대시보드로 돌아가기</a></p>
+
+<div class="content">
+    <div class="content-container">
+        <div class="content-header">
+            <button class="header-back-btn" onclick="location.href='/dashboard'"><i class="fi fi-rr-angle-left"></i></button>
+            <h2>출결 현황</h2>
+            {% if session.get('is_admin') %}
+                <button class="edit-btn" onclick="location.href='/attendance/edit'">
+                    <i class="fi fi-rr-edit"></i>
+                    출결 수정
+                </button>
+            {% endif %}
+
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>이름</th>
+                        {% for date in dates %}
+                            <th>{{ date }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for name, row in table.items() %}
+                    <tr>
+                        <td>
+                            <span>{{ loop.index0 + 1 }}</span>
+                        </td>
+                        <td><strong>{{ name }}</strong></td>
+                        {% for status in row %}
+                            {% if status %}
+                                <td>
+                                    <span class="status {{status}}">{{ status }}</span>
+                                </td>
+
+                            {% else %}
+                                <td>
+                                    <span class="status none">--</span>
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}
 

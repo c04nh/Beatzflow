@@ -3,37 +3,62 @@
 {% block title %}출결 수정{% endblock %}
 
 {% block content %}
-<h2>출결 수정</h2>
-<form method="post">
-<table border="1" style="border-collapse: collapse; text-align: center;">
-    <thead>
-        <tr>
-            <th>이름</th>
-            {% for date in dates %}
-                <th>{{ date }}</th>
-            {% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for member in members %}
-        <tr>
-            <td><strong>{{ member.name }}({{member.role}})</strong></td>
-            {% for date in dates %}
-            <td>
-                <select name="{{ member.id }}_{{ date }}">
-                    {% set current = attendance_data[date][member.id|string] if attendance_data[date][member.id|string] is defined else '' %}
-                    <option value="출석"  {% if current =="출석" %}selected{% endif %}>출석</option>
-                    <option value="사유결석"  {% if current =="사유결석" %}selected{% endif %}>사유결석</option>
-                    <option value="무단결석"  {% if current =="무단결석" %}selected{% endif %}>무단결석</option>
-                    <option value="--" {% if current =="--" or not current %}selected{% endif %}>--</option>
-                </select>
-            </td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<button type="submit">저장하기</button>
-</form>
-<p><a href="{{ url_for('attendance_status') }}">출결 현황으로 돌아가기</a></p>
+<div class="content">
+    <div class="content-container">
+        <div class="content-header">
+            <button class="header-back-btn" onclick="location.href='/dashboard'"><i class="fi fi-rr-angle-left"></i></button>
+            <h2>출결 수정</h2>
+            <div>
+                <button type="submit" name="edit_index" class="edit-only" onclick="submitChanges()">확인</button>
+                <button id="editToggleBtn" onclick="location.href='/attendance/status'">취소</button>
+            </div>
+        </div>
+        <div class="table-container">
+            <form method="post" action="{{ url_for('attendance_edit') }}" id="attendance-status">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>이름</th>
+                            {% for date in dates %}
+                                <th>{{ date }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for member in members %}
+                            <tr>
+                                <td>
+                                    <span>{{ loop.index0 + 1 }}</span>
+                                </td>
+                                <td><strong>{{ member.name }}({{member.role}})</strong></td>
+                                {% for date in dates %}
+                                <td>
+                                    <select name="{{ member.id }}_{{ date }}">
+                                        {% set current = attendance_data[date][member.id|string] if attendance_data[date][member.id|string] is defined else '' %}
+                                        <option value="출석"  {% if current =="출석" %}selected{% endif %}>출석</option>
+                                        <option value="사유결석"  {% if current =="사유결석" %}selected{% endif %}>사유결석</option>
+                                        <option value="무단결석"  {% if current =="무단결석" %}selected{% endif %}>무단결석</option>
+                                        <option value="--" {% if current =="--" or not current %}selected{% endif %}>--</option>
+                                    </select>
+                                </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function submitChanges(){
+        const form = document.getElementById("attendance-status");
+        if (confirm("수정된 내용을 저장하시겠습니까?")) {
+            form.submit(); // 여기서 서버로 전송되고 페이지가 새로고침 됩니다.
+        }
+    }
+</script>
+
 {% endblock %}
