@@ -263,7 +263,7 @@ def edit_notice(notice_id):
 
     return render_template('notice_edit.html', notice=notice)
 
-@app.route('/notices/<int:notice_id>/delete', methods=['POST'])
+@app.route('/notices/<int:notice_id>/delete', methods=['GET', 'POST'])
 def delete_notice(notice_id):
     notices = load_notices()
     updated_notices = [n for n in notices if n['id'] != notice_id]

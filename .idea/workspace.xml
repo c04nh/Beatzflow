@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de4a6be3-5f60-4142-9312-d57639afb6a1" name="Changes" comment="attendance css 적용">
+    <list default="true" id="de4a6be3-5f60-4142-9312-d57639afb6a1" name="Changes" comment="attendance_status css 적용">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/members.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/members.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/notices.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/notices.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/attendance.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/attendance.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/attendance_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/attendance_edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/attendance_status.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/attendance_status.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/members.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/members.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/notice_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/notice_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/notice_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/notice_edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/notice_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/notice_list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +98,9 @@
       <workItem from="1768367573628" duration="75000" />
       <workItem from="1768473152455" duration="12073000" />
       <workItem from="1768546901351" duration="2505000" />
-      <workItem from="1768644340670" duration="4748000" />
+      <workItem from="1768644340670" duration="4841000" />
+      <workItem from="1768978134199" duration="1428000" />
+      <workItem from="1769244107190" duration="4147000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -220,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768549095163</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="attendance_status css 적용">
+      <option name="closed" value="true" />
+      <created>1768649191882</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1768649191882</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,10 +262,11 @@
     <MESSAGE value="header 추가" />
     <MESSAGE value="members css 적용" />
     <MESSAGE value="attendance css 적용" />
-    <option name="LAST_COMMIT_MESSAGE" value="attendance css 적용" />
+    <MESSAGE value="attendance_status css 적용" />
+    <option name="LAST_COMMIT_MESSAGE" value="attendance_status css 적용" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/beatzflow$test.coverage" NAME="test Coverage Results" MODIFIED="1749474746948" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Downloads" />
-    <SUITE FILE_PATH="coverage/beatzflow$app.coverage" NAME="app Coverage Results" MODIFIED="1768644485111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/beatzflow$app.coverage" NAME="app Coverage Results" MODIFIED="1769245349922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

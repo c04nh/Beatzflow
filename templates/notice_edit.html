@@ -1,22 +1,35 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <title>공지 수정</title>
-</head>
-<body>
-  <h1>✏️ 공지사항 수정</h1>
-  <form method="post">
-    <label>제목:<br>
-      <input type="text" name="title" value="{{ notice.title }}" required>
-    </label><br><br>
+{% extends "base.html" %}
 
-    <label>내용:<br>
-      <textarea name="content" rows="10" cols="50" required>{{ notice.content }}</textarea>
-    </label><br><br>
+{% block title %}공지사항 수정{% endblock %}
 
-    <button type="submit">저장</button>
-    <a href="{{ url_for('notice_detail', notice_id=notice.id) }}">취소</a>
-  </form>
-</body>
-</html>
+{% block content %}
+<div class="content">
+    <div class="content-container">
+        <div class="content-header">
+            <button class="header-back-btn" onclick="location.href='/notices'"><i class="fi fi-rr-angle-left"></i></button>
+            <h2>공지사항</h2>
+            <div>
+                <button onclick="submitChanges()">확인</button>
+                <button onclick="location.href='/notices/{{ notice.id }}'">취소</button>
+            </div>
+        </div>
+        <div class="notice-content">
+            <form method="post" id="notice-change">
+                <input type="text" name="title" value="{{ notice.title }}" required>
+                <p id="notice-date">{{ notice.created_at[:10] }}</p>
+                <textarea name="content" rows="10" cols="50" required>{{ notice.content }}</textarea>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function submitChanges(){
+        const form = document.getElementById("notice-change");
+        if (confirm("수정된 내용을 저장하시겠습니까?")) {
+            form.submit(); // 여기서 서버로 전송되고 페이지가 새로고침 됩니다.
+        }
+    }
+</script>
+
+{% endblock %}

@@ -226,6 +226,7 @@ button:hover{
     margin-left: 12px;
     margin-right: 12px;
     padding: 12px 36px 36px 36px;
+    min-height: 360px;
 }
 
 .content-header{
@@ -245,12 +246,12 @@ button:hover{
     padding: 0;
 }
 
-.content-header div{
+.content-header div, .upload{
     position: absolute;
     right: 0px;
 }
 
-.content-header div button, .edit-btn{
+.content-header div button, .edit-btn, .upload{
     border-radius: 8px;
     border-style: solid;
     border-width: 1.5px;
@@ -273,7 +274,7 @@ button:hover{
     padding-right: 4px;
 }
 
-#member-list table, #attendance table{
+#member-list table, #attendance table, .notice{
     border-collapse: collapse;
     width: 100%;
     font-size: 16px;
@@ -512,4 +513,62 @@ button:hover{
 
 .table-container select{
     width: 88px;
+}
+
+.notice{
+    margin-top: 24px;
+}
+
+.notice tbody tr:hover{
+    background-color: #363636;
+    color: white;
+    cursor: pointer;
+}
+
+#none{
+    text-align: center;
+    font-size: 16px;
+    height: 280px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notice-content h2{
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-size: 24px;
+}
+
+.notice-content p{
+    width: 100%;
+    font-size: 12px;
+    border-bottom: 1px solid black;
+    margin-top: 4px;
+    padding-bottom: 12px;
+}
+
+.notice-content div{
+    font-size: 16px;
+    white-space: pre-wrap;
+}
+
+.notice-content input{
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 17px;
+    position: relative;
+    right: 3.9px;
+}
+
+#notice-date{
+    margin-top: 0.7px;
+    margin-bottom: 9px;
+}
+
+.notice-content textarea{
+    font-size: 16px;
+    position: relative;
+    right: 3.2px;
 }

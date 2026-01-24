@@ -3,18 +3,45 @@
 {% block title %}공지사항{% endblock %}
 
 {% block content %}
-  <h1>📢 공지사항</h1>
-{% if session.get('is_admin') %}
-  <a href="/notices/new">📝 새 공지 작성</a>
-{% endif %}
-
-  <ul>
-    {% for notice in notices %}
-    <li>
-      <a href="/notices/{{ notice.id }}">{{ notice.title }}</a><br>
-      <small>{{ notice.created_at[:10] }}</small>
-    </li>
-    {% endfor %}
-  </ul>
-<p><a href="{{ url_for('dashboard') }}">대시보드로 돌아가기</a></p>
+<div class="content">
+    <div class="content-container">
+        <div class="content-header">
+            <button class="header-back-btn" onclick="location.href='/dashboard'"><i class="fi fi-rr-angle-left"></i></button>
+            <h2>공지사항</h2>
+            {% if session.get('is_admin') %}
+                <button class="upload" onclick="location.href='/notices/new'">공지사항 등록</button>
+            {% endif %}
+        </div>
+        {% if notices|length > 0 %}
+            <table class="notice">
+                <thead>
+                    <tr>
+                        <th width="36px"></th>
+                        <th>제목</th>
+                        <th width="180px">등록일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for notice in notices %}
+                        <tr onclick="location.href='/notices/{{ notice.id }}'">
+                            <td>
+                                <span>{{ loop.index0 + 1 }}</span>
+                            </td>
+                            <td>
+                                <span>{{ notice.title }}</span>
+                            </td>
+                            <td>
+                                <span>{{ notice.created_at[:10] }}</span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div id="none">
+                공지사항이 없습니다.
+            </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
