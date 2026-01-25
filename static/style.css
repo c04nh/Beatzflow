@@ -268,7 +268,7 @@ button:hover{
     background-color: #484848;
 }
 
-.content-header div button i, .submit-btn i, .edit-btn i{
+.content-header div button i, .submit-btn i, .edit-btn i, .upload i{
     position: relative;
     top: 2px;
     padding-right: 4px;
@@ -376,6 +376,19 @@ button:hover{
     padding-left: 4px;
 }
 
+.modal-content textarea{
+    width: 360px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 1.5px;
+    font-size: 16px;
+}
+
+#upload-notice, #upload-notice input, #upload-notice textarea, #upload-notice .form-btn{
+    width: 480px;
+}
+
 .none-edit{
     padding:0;
 }
@@ -407,7 +420,7 @@ button:hover{
     margin-top: 2px;
 }
 
-#form-btn{
+.form-btn{
     margin-top: 24px;
     margin-bottom: 8px;
     width: 360px;
@@ -423,11 +436,11 @@ button:hover{
     color: white;
 }
 
-#form-btn:hover{
+.form-btn:hover{
     background-color: #575757;
 }
 
-#form-btn i{
+.form-btn i{
     position: relative;
     top: 1px;
     padding-right: 4px;
@@ -571,4 +584,8 @@ button:hover{
     font-size: 16px;
     position: relative;
     right: 3.2px;
+}
+
+.delete-notice i{
+
 }

@@ -39,7 +39,7 @@
                             <option value="신입">신입</option>
                         </select>
                     </div>
-                    <button id="form-btn" type="submit">
+                    <button class="form-btn" type="submit">
                         <i class="fi fi-rr-user-add"></i>
                         등록
                     </button>
@@ -129,7 +129,7 @@
     }
 
     function confirmDelete(id, name) {
-        if (confirm(name + "를 삭제하시겠습니까?")) {
+        if (confirm(name + "을(를) 삭제하시겠습니까?")) {
             fetch(`/delete_member/${id}`, {
                 method: 'POST'
             }).then(() => window.location.reload());

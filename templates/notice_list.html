@@ -9,8 +9,31 @@
             <button class="header-back-btn" onclick="location.href='/dashboard'"><i class="fi fi-rr-angle-left"></i></button>
             <h2>공지사항</h2>
             {% if session.get('is_admin') %}
-                <button class="upload" onclick="location.href='/notices/new'">공지사항 등록</button>
+                <button class="upload" onclick="openModal()">
+                    <i class="fi fi-rr-pencil"></i>
+                    공지 등록
+                </button>
             {% endif %}
+        </div>
+        <div class="modal">
+            <div class="modal-content" id="upload-notice">
+                <form method="post" action="{{ url_for('new_notice') }}">
+                    <div class="form-header">
+                        <h2>공지사항 등록</h2>
+                        <button class="close-btn" onclick="closeModal()">X</button>
+                    </div>
+                    <div>
+                        <p>제목</p>
+                        <input type="text" name="title" placeholder="제목을 입력하세요" required>
+                        <p>내용</p>
+                        <textarea name="content" rows="10" cols="50" required></textarea>
+                    </div>
+                    <button class="form-btn" type="submit">
+                        <i class="fi fi-rr-pencil b"></i>
+                        등록
+                    </button>
+                </form>
+            </div>
         </div>
         {% if notices|length > 0 %}
             <table class="notice">
@@ -44,4 +67,18 @@
         {% endif %}
     </div>
 </div>
+
+<script>
+    function openModal() {
+        const modal = document.querySelector('.modal');
+        modal.style.display = "block";
+    }
+
+    function closeModal() {
+        const modal = document.querySelector('.modal');
+        modal.style.display = "none";
+    }
+</script>
+
+
 {% endblock %}

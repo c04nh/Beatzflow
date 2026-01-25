@@ -294,7 +294,7 @@ def new_notice():
         save_notices(notices)
         return redirect(url_for('notice_list'))
 
-    return render_template('notice_new.html')
+    return render_template('notice_list.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -10,8 +10,14 @@
             <h2>공지사항</h2>
             {% if session.get('is_admin') %}
                 <div>
-                  <button onclick="location.href='/notices/{{ notice.id }}/edit'">수정</button>
-                  <button onclick="deleteNotice('{{ notice.id }}')">삭제</button>
+                  <button onclick="location.href='/notices/{{ notice.id }}/edit'">
+                      <i class="fi fi-rr-edit"></i>
+                      수정
+                  </button>
+                  <button class="delete-notice" onclick="deleteNotice('{{ notice.id }}')">
+                      <i class="fi fi-rr-trash"></i>
+                      삭제
+                  </button>
                 </div>
             {% endif %}
         </div>
